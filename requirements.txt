@@ -14,3 +14,6 @@ numpy>=1.24.0
 
 # Gemini API (new SDK)
 google-genai>=1.0.0
+
+# Visualization
+matplotlib>=3.7.0
