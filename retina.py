@@ -461,15 +461,29 @@ def call_gemini(
         if not _GENAI_LEGACY:
             # New google-genai SDK (>= 0.8)
             client = genai_new.Client(api_key=resolved_key)
-            response = client.models.generate_content(
-                model="gemini-2.0-flash",
-                contents=prompt,
-            )
-            return response.text
+            model_candidates = [
+                "gemini-2.5-flash",
+                "gemini-2.5-flash-lite",
+                "gemini-1.5-flash",
+            ]
+            last_error: Optional[Exception] = None
+            for model_name in model_candidates:
+                try:
+                    response = client.models.generate_content(
+                        model=model_name,
+                        contents=prompt,
+                    )
+                    return response.text
+                except Exception as exc:  # noqa: BLE001
+                    last_error = exc
+                    continue
+            if last_error is not None:
+                raise last_error
+            raise RuntimeError("Gemini call failed for all model candidates.")
         else:
             # Legacy google-generativeai SDK
             genai.configure(api_key=resolved_key)  # type: ignore[name-defined]
-            model = genai.GenerativeModel("gemini-pro")  # type: ignore[name-defined]
+            model = genai.GenerativeModel("gemini-1.5-flash")  # type: ignore[name-defined]
             response = model.generate_content(prompt)
             return response.text
     except Exception as exc:  # noqa: BLE001

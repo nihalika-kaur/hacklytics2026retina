@@ -1,3 +1,20 @@
-retinascope_visual_test.png
+.venv/
 __pycache__/
-*.pyc
+*.py[cod]
+
+# Data and outputs
+data/
+outputs/
+
+# Model/checkpoint artifacts
+*.pth
+*.pt
+*.safetensors
+
+# Notebook/runtime artifacts
+.ipynb_checkpoints/
+__temp_pipreqsnb_folder/
+
+# OS/editor
+.DS_Store
+Thumbs.db
