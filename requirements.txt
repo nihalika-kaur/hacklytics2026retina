@@ -1,0 +1,16 @@
+# RetinaScope AI — Python dependencies
+# Install with: pip install -r requirements.txt
+
+# Deep learning & vision model
+torch>=2.0.0
+torchvision>=0.15.0
+timm>=0.9.0
+
+# Image processing
+opencv-python>=4.8.0
+scikit-image>=0.21.0
+Pillow>=10.0.0
+numpy>=1.24.0
+
+# Gemini API (new SDK)
+google-genai>=1.0.0
