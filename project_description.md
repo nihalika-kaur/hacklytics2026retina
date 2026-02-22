@@ -109,6 +109,11 @@ Since ODIR-5K gives you a Left Eye and a Right Eye for every patient:
 - We **concatenate** (join) the features from both eyes before the final prediction.
 - *Why?* Systemic diseases like Hypertension or Diabetes usually show up in both eyes. If the model sees signs in both, its "confidence score" increases, drastically reducing False Positives.
 
+
+DINOv2 (Self-Supervised): Recent studies show that DINOv2-base and DINOv2-large models, pretrained on large datasets, can outperform traditional methods (like RETFound) on retinal imaging tasks, with AUROC scores ranging from 0.874 to 0.892 in multi-class scenarios.
+Hybrid/Combined Approaches: Using a mixture of models often yields the best results. A combination strategy involving DenseNet201, EfficientNetB3, and InceptionResNetV2, combined with a specialized classifier (like BiLSTM), has achieved over 98% accuracy on validation sets.
+
+
 ### Summary of the Output
 
 - **What is being predicted:** A probability score (0.0 to 1.0) for 8 different conditions.
